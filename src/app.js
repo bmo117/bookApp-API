@@ -13,11 +13,12 @@ import { PORT } from "../src/config.js";
 const app = express();
 app.use(
   cors({
-    credentials: true,
+    credentials: false,
     origin: [
       process.env.CLIENT_URL,
       "http://localhost:5173/bmo117/BookApp-Front",
     ],
+    methods: "GET,PUT,DELETE",
   })
 );
 app.use("/public", express.static(join(current_dir, "../src/uploads")));
