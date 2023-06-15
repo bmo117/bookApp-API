@@ -11,10 +11,12 @@ import { fileURLToPath } from "url";
 import { PORT } from "../src/config.js";
 //config();
 const app = express();
-app.use({
-  credentials: true,
-  origin: process.env.CLIENT_URL,
-});
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+  })
+);
 
 app.use("/public", express.static(join(current_dir, "../src/uploads")));
 app.use(express.json());
