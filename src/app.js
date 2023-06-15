@@ -11,10 +11,9 @@ import { fileURLToPath } from "url";
 import { PORT } from "../src/config.js";
 //config();
 const app = express();
-app.use((req, res, next) => {
-  res.append("Access-Control-Allow-Origin", ["*"]);
-  res.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  next();
+app.use({
+  credentials: true,
+  origin: process.env.CLIENT_URL || "http://localhost:5173",
 });
 
 app.use("/public", express.static(join(current_dir, "../src/uploads")));
