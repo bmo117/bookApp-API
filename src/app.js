@@ -13,7 +13,7 @@ import { PORT } from "../src/config.js";
 const app = express();
 app.use({
   credentials: true,
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: process.env.CLIENT_URL,
 });
 
 app.use("/public", express.static(join(current_dir, "../src/uploads")));
