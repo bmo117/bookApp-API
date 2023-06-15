@@ -22,12 +22,14 @@ import { json } from "express";
 export const getBooks = asyncHandler(async (req, res) => {
   let amount = req.params.amount;
   let query = "";
+  const [data] = "";
   if (amount > 0) {
     query = "SELECT book_ID FROM books LIMIT " + amount;
+    [data] = await pool.query(query, [amount]);
   } else {
     query = "SELECT book_ID FROM books";
+    [data] = await pool.query(query);
   }
-  const [data] = await pool.query(query, [amount]);
 
   const array = [];
   console.log("1");
