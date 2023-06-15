@@ -14,7 +14,12 @@ const app = express();
 app.use("/public", express.static(join(current_dir, "../src/uploads")));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+  })
+);
 app.use("/api/admin/books", adminRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use(errorhandler);
