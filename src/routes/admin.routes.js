@@ -8,12 +8,13 @@ import {
   getAuthors,
   getGenres,
   getFormats,
+  getAllBooks,
 } from "../controllers/admin.controllers.js";
 import verifyTokenAdmin from "../middleware/vereifyTokenAdmin.js";
 import multerUpload from "../middleware/imageHandler.js";
 import { validateCreate } from "../validations/adminRoutes.js";
 const router = Router();
-
+router.get("/", getAllBooks);
 router.get("/authors", getAuthors);
 router.get("/genres", getGenres);
 router.get("/formats", getFormats);
