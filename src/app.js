@@ -11,15 +11,19 @@ import { fileURLToPath } from "url";
 import { PORT } from "../src/config.js";
 //config();
 const app = express();
-app.use("/public", express.static(join(current_dir, "../src/uploads")));
-app.use(express.json());
-app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+    origin: [
+      process.env.CLIENT_URL,
+      "http://localhost:5173/bmo117/BookApp-Front",
+    ],
   })
 );
+app.use("/public", express.static(join(current_dir, "../src/uploads")));
+app.use(express.json());
+app.use(cookieParser());
+
 app.use("/api/admin/books", adminRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use(errorhandler);
