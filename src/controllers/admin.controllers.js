@@ -25,7 +25,7 @@ export const getBooks = asyncHandler(async (req, res) => {
   const [data] = "";
   if (amount > 0) {
     query = "SELECT book_ID FROM books LIMIT " + amount;
-    [data] = await pool.query(query, [amount]);
+    [data] = await pool.query(query);
   } else {
     query = "SELECT book_ID FROM books";
     [data] = await pool.query(query);
