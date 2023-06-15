@@ -149,7 +149,7 @@ export const insertIntoUsersTable = async (
   password
 ) => {
   const [rol] = await pool.query("SELECT role_ID FROM roles   WHERE name = ?", [
-    "admin",
+    "user",
   ]);
   const [newUser] = await pool.query(
     "INSERT INTO users (user_ID,name, last_name,email,password, role_ID) VALUES (UUID_TO_BIN(UUID()), ?,?,?,?,?)",
