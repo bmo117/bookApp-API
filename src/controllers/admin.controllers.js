@@ -24,6 +24,8 @@ export const getBooks = asyncHandler(async (req, res) => {
   let query = "";
   if (amount > 0) {
     query = "SELECT book_ID FROM books LIMIT " + amount;
+  } else {
+    res.status(404).json({ error: "Book not found" });
   }
   const [data] = await pool.query(query, [amount]);
   const array = [];
