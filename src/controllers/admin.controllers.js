@@ -22,7 +22,7 @@ import { json } from "express";
 export const getBooks = asyncHandler(async (req, res) => {
   let amount = req.params.amount;
   let query = "";
-  const [data] = "";
+  let [data] = "";
   if (amount > 0) {
     query = "SELECT book_ID FROM books LIMIT " + amount;
     [data] = await pool.query(query);
