@@ -11,16 +11,17 @@ import { fileURLToPath } from "url";
 import { PORT } from "../src/config.js";
 //config();
 const app = express();
-app.use(
-  cors({
-    credentials: false,
-    origin: [
-      process.env.CLIENT_URL,
-      "http://localhost:5173/bmo117/BookApp-Front",
-    ],
-    methods: "GET,PUT,DELETE",
-  })
-);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+
 app.use("/public", express.static(join(current_dir, "../src/uploads")));
 app.use(express.json());
 app.use(cookieParser());
